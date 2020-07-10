@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h1>
+      WebNFC
+    </h1>
+    <h3>
+      NDEFWriteOptions
+    </h3>
+    <div>
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td>ignoreRead: </td>
+          <td>
+            <select id="ignoreRead">
+              <option>true</option>
+              <option>false</option>
+            <select>
+          </td>
+        </tr>
+        <tr>
+          <td>overwrite: </td>
+          <td>
+            <select id="overwrite">
+              <option>true</option>
+              <option>false</option>
+            <select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan=2><button id="abortWriteButton">Abort write</button></td>
+        </tr>
+      </table>
+    </div>
+    <h3>
+      NDEFScanOptions
+    </h3>
+    <div>
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td>id: </td>
+          <td><input id="scanId" type="text" value=""/></td>
+        </tr>
+        <tr>
+          <td>recordType: </td>
+          <td>
+            <select id="recordType">
+              <option>---</option>
+              <option>text</option>
+              <option>url</option>
+              <option>absolute-url</option>
+              <option>mime</option>
+              <option>empty</option>
+              <option>unknown</option>
+              <option>w3.org:abc</option>
+              <option>a.b:c</option>
+              <option>smart-poster</option>
+            <select>
+          </td>
+        </tr>
+        <tr>
+          <td>mediaType: </td>
+          <td><input id="mediaType" type="text" value=""/></td>
+        </tr>
+        <tr>
+          <td colspan=2><font color="gray">Eg: application/octet-stream; application/json</font></td>
+        </tr>
+        <tr>
+          <td colspan=2><button id="abortButton">Abort scan</button></td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <h3>
+       Write Message
+    </h3>
+    NDEFMessageSource: <select id="NDEFMessageSource">
+      <option>DOMString</option>
+      <option>BufferSource</option>
+      <option>NDEFMessageInit</option>
+    <select><br>
+    <div id="NDEFMessageInit">
+    NDEFMessageInit recordType: <select id="writeRecordType">
+      <option>text from DOMString</option>
+      <option>text from BufferSource</option>
+      <option>url</option>
+      <option>absolute-url</option>
+      <option>mime from json</option>
+      <option>mime</option>
+      <option>empty</option>
+      <option>unknown</option>
+      <option>external type from NDEFMessage</option>
+      <option>external type from BufferSource</option>
+      <option>local type</option>
+      <option>smart-poster</option>
+    <select><br>
+    </div>
+    <textarea cols="30" rows="5" id="writeMessage" style="margin-bottom: 20px"></textarea><br><br>
+    <button id="writeButton">
+      Start to write tag
+    </button>
+    <button id="scanButton">
+      Start to read tag
+    </button>
+    <iframe src="iframe.html" style="display:block; height: 64px; margin-top: 12px"></iframe>
+    <pre id="pre" style="overflow: auto; padding: 0 12px 12px 0"></pre>
+    <pre><code id="co"></code></pre>
+    <script>
+      if ('NDEFReader' in window) {
+        import("./script.js");
+      } else {
+        pre.innerHTML = '<b>No WebNFC support!</b>\n';
+      }
+      document.addEventListener('focus', event => { console.log('focus doc') });
+    </script>
+  </body>
+</html>
+
